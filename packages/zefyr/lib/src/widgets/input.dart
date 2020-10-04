@@ -46,10 +46,13 @@ class InputConnectionController implements TextInputClient {
           keyboardAppearance: keyboardAppearance,
           textCapitalization: TextCapitalization.sentences,
         ),
-      )..setEditingState(value);
+      )
+        ..show()
+        ..setEditingState(value);
       _sentRemoteValues.add(value);
+    } else {
+      _textInputConnection.show();
     }
-    _textInputConnection.show();
   }
 
   /// Closes input connection if it's currently open. Otherwise does nothing.
@@ -197,5 +200,10 @@ class InputConnectionController implements TextInputClient {
   @override
   void showAutocorrectionPromptRect(int start, int end) {
     // TODO: implement showAutocorrectionPromptRect
+  }
+
+  @override
+  void performPrivateCommand(String action, Map<String, dynamic> data) {
+    // TODO: implement performPrivateCommand
   }
 }
